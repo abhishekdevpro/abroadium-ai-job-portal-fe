@@ -560,12 +560,151 @@
 // export default Template8;
 
 
+// import React from 'react';
+// import profilephoto from '../images/profilephoto.png';
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faEnvelope, faGlobe, faMapMarkerAlt, faPhone } from '@fortawesome/free-solid-svg-icons';
+// import DOMPurify from 'dompurify';
+// import { faGithub } from '@fortawesome/free-brands-svg-icons';
+
+// const createMarkup = (html) => {
+//   return {
+//     __html: DOMPurify.sanitize(html, {
+//       ALLOWED_TAGS: ['p', 'br', 'b', 'i', 'em', 'strong', 'a', 'ul', 'ol', 'li'],
+//       ALLOWED_ATTR: ['href', 'target', 'class']
+//     }).replace(/<ul>/g, '<ul class="list-disc-bold">')
+//       .replace(/<ol>/g, '<ol class="list-decimal-custom">')
+//   };
+// };
+
+// const Template8 = ({
+//   image,
+//   data = {},
+//   boxBgColor,
+//   font,
+//   textSize,
+//   sectionSpacing,
+//   paragraphSpacing,
+//   lineSpacing,
+//   isPreviewScreen,
+//   isTemplate1Previewing,
+//   predefinedText = {},
+// }) => {
+//   const textSizeClass = textSize === 'small' ? 'text-sm' : textSize === 'medium' ? 'text-base' : 'text-lg';
+//   const sectionSpacingClass = sectionSpacing === 'small' ? 'space-y-2' : sectionSpacing === 'medium' ? 'space-y-4' : 'space-y-6';
+//   const paragraphSpacingClass = paragraphSpacing === 'small' ? 'mb-2' : paragraphSpacing === 'medium' ? 'mb-4' : 'mb-6';
+//   const lineHeightClass = lineSpacing === '1' ? 'leading-tight' : lineSpacing === '1.5' ? 'leading-snug' : 'leading-relaxed';
+
+//   const { details = [], experiences = [], educations = [], skills = [], sectionadd = [], summary = [] } = data || {};
+//   console.log("Image ka link",image)
+//   return (
+//     <div className={`border bg-gradient-to-br from-indigo-600 to-purple-700 p-7 break-all ${textSizeClass} ${sectionSpacingClass} ${lineHeightClass} shadow-2xl`} style={{ fontFamily: font }}>
+//       <div className="bg-white rounded-3xl h-full px-6 py-8 shadow-inner">
+//         <div className="bg-gradient-to-r from-gray-100 to-gray-200 flex justify-between items-center px-8 py-6 rounded-3xl shadow-md">
+//           <div className="w-2/4">
+//             <h5 className="font-extrabold text-xl text-indigo-700"><FontAwesomeIcon icon={faGlobe} className="mr-2" /> ABOUT ME</h5>
+//             {summary.map((sum, index) => (
+//               <div key={index}>
+//                 <p className={`${paragraphSpacingClass} text-sm sm:text-base md:text-base lg:text-base m-2 break-all text-gray-700`} dangerouslySetInnerHTML={{ __html: sum.summarydescription || predefinedText.summary.summarydescription }} />
+//               </div>
+//             ))}
+//           </div>
+//           <div className="text-center pt-10 w-1/2">
+//             {details.map((del, index) => (
+//               <div key={index}>
+//                 <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-indigo-800">{del.name || "John Doe"}</h3>
+//                 <p className="text-xl md:text-2xl lg:text-2xl mt-2 text-purple-600">{del.Profession || "Software Engineer"}</p>
+//               </div>
+//             ))}
+//           </div>
+//         </div>
+//         <div className="flex flex-col md:flex-row rounded-t-none mt-8">
+//           <div className="md:w-2/4 md:px-5 pt-4">
+//             <h5 className="font-extrabold text-lg mb-4 text-indigo-700"><FontAwesomeIcon icon={faEnvelope} className="mr-2" /> EXPERIENCE</h5>
+//             {experiences.map((exp, index) => (
+//               <div key={index} className="mb-6">
+//                 <p className="text-sm text-purple-600">{exp.month1 || "2024/01"} - {exp.month2 || "2024/05"}</p>
+//                 <h6 className="font-bold text-lg my-2 text-indigo-800">{exp.Company || "ABC Inc."}</h6>
+//                 <div 
+//                   className="text-base prose prose-sm max-w-none text-gray-700"
+//                   dangerouslySetInnerHTML={createMarkup(exp.companydescription)}
+//                 />
+//                 <h6 className="font-semibold text-sm mt-2 text-purple-600">{exp.role || "Software Developer"}</h6>
+//               </div>
+//             ))}
+//             <h5 className="font-extrabold text-lg mb-4 mt-8 text-indigo-700">SKILLS</h5>
+//             <div className="flex flex-wrap">
+//               {skills.map((skill, index) => (
+//                 <div key={index} className="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+//                   {skill.skillname || "Skill Name"}
+//                 </div>
+//               ))}
+//             </div>
+//             <h5 className="font-extrabold text-lg mb-4 mt-8 text-indigo-700">LANGUAGE</h5>
+//             {details.map((del, index) => (
+//               <div key={index} className="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 inline-block">
+//                 {del.Language || "English"}
+//               </div>
+//             ))}
+//             <h5 className="font-extrabold text-lg mb-4 mt-8 text-indigo-700">GITHUB</h5>
+//             {details.map((del, index) => (
+//               <div key={index}>
+//                 <a href={del.github || "#"} className="text-purple-600 hover:text-purple-800 transition duration-300">
+//                   <FontAwesomeIcon icon={faGithub} className="mr-2" />
+//                   {del.github || "https://github.com/example"}
+//                 </a>
+//               </div>
+//             ))}
+//           </div>
+//           <div className="md:w-1/3 ms-10 h-full pb-40 bg-gradient-to-b from-indigo-600 to-purple-700 mx-1 mt-2 rounded-2xl shadow-lg">
+//             <div className="w-11/12 h-5/6 ms-2 bg-white border-white rounded-full border-8 text-center mt-4 shadow-xl overflow-hidden">
+//               <img src={image || profilephoto} alt="" className="w-full h-full object-cover" />
+//             </div>
+//             <div className="px-5 h-full text-white">
+//               <div>
+//                 <h6 className="font-extrabold pt-5 text-lg mb-4">CONTACT ME</h6>
+//                 <ul className="space-y-2">
+//                   {details.map((del, index) => (
+//                     <React.Fragment key={index}>
+//                       <li className="flex items-center"><FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2" />{del.address || "123 Main St"}</li>
+//                       <li className="flex items-center"><FontAwesomeIcon icon={faPhone} className="mr-2" />{del.phoneNumber || "123-456-7890"}</li>
+//                       <li className="flex items-center break-all"><FontAwesomeIcon icon={faEnvelope} className="mr-2" />{del.email || "example@.com"}</li>
+//                     </React.Fragment>
+//                   ))}
+//                 </ul>
+//               </div>
+//               <h5 className="font-extrabold text-lg mt-8 mb-4">EDUCATION</h5>
+//               {educations.map((edu, index) => (
+//                 <div key={index} className="mb-4">
+//                   <h6 className="font-bold text-lg">{edu.coursename || "Computer Science"}</h6>
+//                   <p className="text-sm">{edu.schoolname || "ABC University"}</p>
+//                   <p className="text-sm">{edu.schoolplace || "City, Country"}</p>
+//                   <p className="text-sm text-purple-300">{edu.edmonth1} - {edu.edmonth2}</p>
+//                 </div>
+//               ))}
+//               <div>
+//                 {sectionadd.map((section, index) => (
+//                   <div key={index} className="mt-8 p-4 bg-white bg-opacity-10 rounded-lg">
+//                     <h5 className="font-extrabold text-lg mb-2">{section.sectiontitle}</h5>
+//                     <span className="text-sm">{section.sectionname}</span>
+//                     <div className={`${paragraphSpacingClass} text-sm break-all`} dangerouslySetInnerHTML={{ __html: section.sectiondescription }} />
+//                   </div>
+//                 ))}
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Template8;
+
 import React from 'react';
+import { useState } from 'react';
 import profilephoto from '../images/profilephoto.png';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faGlobe, faMapMarkerAlt, faPhone } from '@fortawesome/free-solid-svg-icons';
-import DOMPurify from 'dompurify';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import DOMPurify from 'dompurify'
 
 const createMarkup = (html) => {
   return {
@@ -577,7 +716,7 @@ const createMarkup = (html) => {
   };
 };
 
-const Template8 = ({
+const Template9 = ({
   image,
   data = {},
   boxBgColor,
@@ -590,113 +729,153 @@ const Template8 = ({
   isTemplate1Previewing,
   predefinedText = {},
 }) => {
+  // Define classes based on props
   const textSizeClass = textSize === 'small' ? 'text-sm' : textSize === 'medium' ? 'text-base' : 'text-lg';
   const sectionSpacingClass = sectionSpacing === 'small' ? 'space-y-2' : sectionSpacing === 'medium' ? 'space-y-4' : 'space-y-6';
   const paragraphSpacingClass = paragraphSpacing === 'small' ? 'mb-2' : paragraphSpacing === 'medium' ? 'mb-4' : 'mb-6';
   const lineHeightClass = lineSpacing === '1' ? 'leading-tight' : lineSpacing === '1.5' ? 'leading-snug' : 'leading-relaxed';
 
-  const { details = [], experiences = [], educations = [], skills = [], sectionadd = [], summary = [] } = data || {};
+  // Provide default values for data properties
+  const { details = [{}], experiences = [], educations = [], skills = [], sectionadd = [], summary = [] } = data || {};
+
+  // Generic function to check if all required fields are filled
+  const areAllFieldsFilled = (item, fields) => {
+    return fields.every(field => item[field] && item[field].trim() !== '');
+  };
+
+  // Check if all details are filled
+  const allDetailsFilled = details.every(detail =>
+    areAllFieldsFilled(detail, ['Profession', 'phoneNumber', 'email', 'link', 'address', 'name'])
+  );
+
+  const allDetailsFilled2 = experiences.every(experience =>
+    areAllFieldsFilled(experience, ['Company', 'month1', 'role', 'companydescription'])
+  );
+
+  const allDetailsFilled3 = educations.every(education =>
+    areAllFieldsFilled(education, ['schoolname', 'edmonth1', 'edmonth2', 'coursename'])
+  );
+
+  const allDetailsFilled4 = skills.every(skill =>
+    areAllFieldsFilled(skill, ['skillname', 'skilldetails'])
+  );
+
+  const allDetailsFilled5 = sectionadd.every(section =>
+    areAllFieldsFilled(section, ['sectiontitle', 'sectiondescription'])
+  );
+
+  const allDetailsFilled6 = summary.every(summar =>
+    areAllFieldsFilled(summar, ['summarydescription'])
+  );
+
+  const [images, setImages] = useState(() => {
+    if (details && details.length > 0) {
+      return details.map(() => null);
+    }
+    return [];
+  });
 
   return (
-    <div className={`border bg-gradient-to-br from-indigo-600 to-purple-700 p-7 break-all ${textSizeClass} ${sectionSpacingClass} ${lineHeightClass} shadow-2xl`} style={{ fontFamily: font }}>
-      <div className="bg-white rounded-3xl h-full px-6 py-8 shadow-inner">
-        <div className="bg-gradient-to-r from-gray-100 to-gray-200 flex justify-between items-center px-8 py-6 rounded-3xl shadow-md">
-          <div className="w-2/4">
-            <h5 className="font-extrabold text-xl text-indigo-700"><FontAwesomeIcon icon={faGlobe} className="mr-2" /> ABOUT ME</h5>
-            {summary.map((sum, index) => (
-              <div key={index}>
-                <p className={`${paragraphSpacingClass} text-sm sm:text-base md:text-base lg:text-base m-2 break-all text-gray-700`} dangerouslySetInnerHTML={{ __html: sum.summarydescription || predefinedText.summary.summarydescription }} />
-              </div>
-            ))}
-          </div>
-          <div className="text-center pt-10 w-1/2">
-            {details.map((del, index) => (
-              <div key={index}>
-                <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-indigo-800">{del.name || "John Doe"}</h3>
-                <p className="text-xl md:text-2xl lg:text-2xl mt-2 text-purple-600">{del.Profession || "Software Engineer"}</p>
+    <div className={`border break-all ${textSizeClass} ${sectionSpacingClass} ${lineHeightClass}`} style={{ fontFamily: font }}>
+      <div className='flex'>
+        <div className="md:w-1/3 md:p-4 bg-[#333456] text-white overflow-auto justify-center">
+          <div>
+            <div className="w-32 h-32 border-blue-950 bg-white rounded-full border-8 text-center break-all">
+              <img src={image || profilephoto} alt="" style={{ height: '112px', width: '112px' }} className='rounded-full'/>
+            </div>
+            <h5 className='text-sm pt-5'>CONTACT</h5>
+            <div className="flex-grow border-t border-white align-super mt-3"></div>
+            <ul className="text-xs md:text-xs lg:text-xs mt-2">
+              {details.map((del, index) => (
+                <React.Fragment key={index}>
+                  <li><span className="m-2">&#8226;</span>{del.address || predefinedText.details.address}</li>
+                  <li className='text-xs md:text-xs lg:text-xs'>
+                    <span className="m-2">&#8226;</span>{del.phoneNumber || predefinedText.details.phoneNumber}
+                  </li>
+                  <li className='text-xs md:text-xs lg:text-xs break-all'>
+                    <span className="m-2">&#8226;</span>{del.email || predefinedText.details.email}
+                  </li>
+                  <li className='text-xs md:text-xs lg:text-xs'>
+                    <span className="m-2">&#8226;</span><a href={del.link || '#'}>{del.link || predefinedText.details.link}</a>
+                  </li>
+                </React.Fragment>
+              ))}
+            </ul>
+          </div><br />
+          <h5 className='text-sm'>EDUCATION</h5><br />
+          <div className="flex-grow border-t border-white align-super"></div>
+          {educations.map((edu, index) => (
+            <div key={index}>
+              <ul className="text-xs md:text-xs lg:text-xs mt-2">
+                <li className='font-bold'>{edu.coursename || predefinedText.educations.coursename}</li>
+                <li className='text-xs md:text-xs lg:text-sm mt-2'>{edu.schoolname || predefinedText.educations.schoolname}</li>
+                <li className='text-xs md:text-xs lg:text-xs mt-2'>{edu.schoolplace || predefinedText.educations.schoolplace}</li>
+              </ul>
+            </div>
+          ))}<br />
+          <h5 className='text-sm'>SKILLS</h5>
+          <div className="flex-grow border-t border-white align-super mt-2"></div>
+          {skills.map((skill, index) => (
+            <div key={index}>
+              <ul className="text-xs md:text-xs lg:text-xs mt-2">
+                <li>{skill.skillname || predefinedText.skills.skillname}</li>
+                {/* Uncomment if you need to display skill details */}
+                {/* <li className='text-xs md:text-xs lg:text-xs'>{skill.skilldetails || predefinedText.skills.skilldetails}</li> */}
+              </ul>
+            </div>
+          ))}
+          <div>
+            {sectionadd.map((section, index) => (
+              <div key={index} className="mt-5">
+                <h5 className="text-blue-800 break-all">{section.sectiontitle}</h5>
+                <div className="flex-grow border-t border-white align-super my-2"></div>
+                <span className="font-bold text-xs w-32">{section.sectionname}</span>
+                <h6 className={`${paragraphSpacingClass} text-xs break-all`} dangerouslySetInnerHTML={{ __html: section.sectiondescription }} />
               </div>
             ))}
           </div>
         </div>
-        <div className="flex flex-col md:flex-row rounded-t-none mt-8">
-          <div className="md:w-2/4 md:px-5 pt-4">
-            <h5 className="font-extrabold text-lg mb-4 text-indigo-700"><FontAwesomeIcon icon={faEnvelope} className="mr-2" /> EXPERIENCE</h5>
-            {experiences.map((exp, index) => (
-              <div key={index} className="mb-6">
-                <p className="text-sm text-purple-600">{exp.month1 || "2024/01"} - {exp.month2 || "2024/05"}</p>
-                <h6 className="font-bold text-lg my-2 text-indigo-800">{exp.Company || "ABC Inc."}</h6>
-                <div 
-                  className="text-base prose prose-sm max-w-none text-gray-700"
-                  dangerouslySetInnerHTML={createMarkup(exp.companydescription)}
-                />
-                <h6 className="font-semibold text-sm mt-2 text-purple-600">{exp.role || "Software Developer"}</h6>
-              </div>
-            ))}
-            <h5 className="font-extrabold text-lg mb-4 mt-8 text-indigo-700">SKILLS</h5>
-            <div className="flex flex-wrap">
-              {skills.map((skill, index) => (
-                <div key={index} className="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                  {skill.skillname || "Skill Name"}
+
+        <div className='md:w-2/3 md:px-4'>
+          {details.map((del, index) => (
+            <div key={index}>
+              <br />
+              <h3 className="text-lg md:text-xl lg:text-3xl text-gray-700 font-bold">{del.name || predefinedText.details.name}</h3>
+              <p className='text-sm md:text-sm lg:text-sm mt-2'>{del.Profession || predefinedText.details.profession}</p>
+              <br /><br />
+              <h5 className='font-bold mb-2'>About Me</h5>
+              <div className="flex-grow border-t border-gray-900 align-super"></div>
+              {summary.map((sum, index) => (
+                <div key={index}>
+                  <div
+                      className="text-sm prose prose-sm max-w-none"
+                      dangerouslySetInnerHTML={createMarkup(sum?.summarydescription || "I am a journalist in a private company, I have been a journalist for 3 years. I am very happy in my work.")}
+                    />
+                  <br />
                 </div>
               ))}
-            </div>
-            <h5 className="font-extrabold text-lg mb-4 mt-8 text-indigo-700">LANGUAGE</h5>
-            {details.map((del, index) => (
-              <div key={index} className="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 inline-block">
-                {del.Language || "English"}
-              </div>
-            ))}
-            <h5 className="font-extrabold text-lg mb-4 mt-8 text-indigo-700">GITHUB</h5>
-            {details.map((del, index) => (
-              <div key={index}>
-                <a href={del.github || "#"} className="text-purple-600 hover:text-purple-800 transition duration-300">
-                  <FontAwesomeIcon icon={faGithub} className="mr-2" />
-                  {del.github || "https://github.com/example"}
-                </a>
-              </div>
-            ))}
-          </div>
-          <div className="md:w-1/3 ms-10 h-full pb-40 bg-gradient-to-b from-indigo-600 to-purple-700 mx-1 mt-2 rounded-2xl shadow-lg">
-            <div className="w-11/12 h-5/6 ms-2 bg-white border-white rounded-full border-8 text-center mt-4 shadow-xl overflow-hidden">
-              <img src={image || profilephoto} alt="" className="w-full h-full object-cover" />
-            </div>
-            <div className="px-5 h-full text-white">
-              <div>
-                <h6 className="font-extrabold pt-5 text-lg mb-4">CONTACT ME</h6>
-                <ul className="space-y-2">
-                  {details.map((del, index) => (
-                    <React.Fragment key={index}>
-                      <li className="flex items-center"><FontAwesomeIcon icon={faMapMarkerAlt} className="mr-2" />{del.address || "123 Main St"}</li>
-                      <li className="flex items-center"><FontAwesomeIcon icon={faPhone} className="mr-2" />{del.phoneNumber || "123-456-7890"}</li>
-                      <li className="flex items-center break-all"><FontAwesomeIcon icon={faEnvelope} className="mr-2" />{del.email || "example@.com"}</li>
-                    </React.Fragment>
-                  ))}
-                </ul>
-              </div>
-              <h5 className="font-extrabold text-lg mt-8 mb-4">EDUCATION</h5>
-              {educations.map((edu, index) => (
-                <div key={index} className="mb-4">
-                  <h6 className="font-bold text-lg">{edu.coursename || "Computer Science"}</h6>
-                  <p className="text-sm">{edu.schoolname || "ABC University"}</p>
-                  <p className="text-sm">{edu.schoolplace || "City, Country"}</p>
-                  <p className="text-sm text-purple-300">{edu.edmonth1} - {edu.edmonth2}</p>
-                </div>
-              ))}
-              <div>
-                {sectionadd.map((section, index) => (
-                  <div key={index} className="mt-8 p-4 bg-white bg-opacity-10 rounded-lg">
-                    <h5 className="font-extrabold text-lg mb-2">{section.sectiontitle}</h5>
-                    <span className="text-sm">{section.sectionname}</span>
-                    <div className={`${paragraphSpacingClass} text-sm break-all`} dangerouslySetInnerHTML={{ __html: section.sectiondescription }} />
+              <h5 className='font-bold mb-2'>Work Experience</h5>
+              <div className="flex-grow border-t border-gray-900 align-super"></div>
+              {experiences.map((exp, index) => (
+                <div key={index}>
+                  <div className='flex justify-between mt-4'>
+                    <h6 className='font-bold'>{exp.Company || "ABC Inc."}</h6>
+                    <p>{exp.month1} - {exp.month2}</p>
                   </div>
-                ))}
-              </div>
+                  <h6>{exp.role || "Software Developer"}</h6>
+                  <div 
+                      className="text-sm prose prose-sm max-w-none"
+                      dangerouslySetInnerHTML={createMarkup(exp.companydescription)}
+                    />
+                  <br />
+                </div>
+              ))}
             </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>
   );
 };
 
-export default Template8;
+export default Template9;

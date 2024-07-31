@@ -350,10 +350,9 @@ const Template14 = ({
   <h5 className="text-lg text-red-900 font-bold">About Me</h5>
   <p className="text-sm">
     <span
-      dangerouslySetInnerHTML={{
-        __html: summary[0]?.summarydescription || "I am a journalist in a private company, I have been a journalist for 3 years. I am very happy in my work."
-      }}
-      className="prose"
+       className="text-sm prose prose-sm max-w-none"
+       dangerouslySetInnerHTML={createMarkup(summary?.summarydescription || "I am a journalist in a private company, I have been a journalist for 3 years. I am very happy in my work.")}
+ 
     />
   </p>
 </div>

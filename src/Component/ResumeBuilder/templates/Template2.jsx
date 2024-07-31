@@ -998,8 +998,11 @@ const Template2 = ({
           onDragStart={(e) => handleDragStart(e, index)}
           onDrop={(e) => handleDrop(e, index)}
           onDragOver={handleDragOver}
-          className="mb-6"
+          className="mb-6 pl-10 pr-4 py-4 rounded border-2 border-transparent hover:border-blue-300 hover:bg-gray-50 transition-all duration-300 ease-in-out cursor-move relative group"
         >
+          <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-black text-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+    ☰
+  </div>
           {section.id === "details" && (
             <div>
               {section.content && section.content.length > 0 ? (

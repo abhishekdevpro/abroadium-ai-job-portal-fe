@@ -727,6 +727,7 @@ import PdfDownloadButton from './PdfDownloadButton';
 
 const PreviewSection = ({
   cvRef,
+  image,
   handlePrint,
   setIsPreviewing,
   formData,
@@ -754,7 +755,8 @@ const PreviewSection = ({
   const [accuracyPercentage, setAccuracyPercentage] = useState(null);
   const [paymentCompleted, setPaymentCompleted] = useState(false);
   const [showPaymentPopup, setShowPaymentPopup] = useState(false);
-
+   
+  console.log("image ",image)
   const resumeScore = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -910,9 +912,9 @@ const PreviewSection = ({
         </div>
 
         {/* Resume preview */}
-        <div className="flex-1 overflow-auto p-4 md:p-8 flex flex-col items-center">
+        <div className="flex-1 overflow-auto p-4 md:p-8 flex flex-col items-center ">
           <div 
-            className="bg-white shadow-lg rounded-lg overflow-hidden w-full"
+            className="bg-white shadow-lg rounded-lg w-full"
             style={{
               maxWidth: '210mm',
               minHeight: '297mm', // Ensure the resume is in A4 size and shows full length
@@ -922,6 +924,7 @@ const PreviewSection = ({
           >
             <TemplateComponent
               ref={cvRef}
+              image={image}
               data={formData}
               selectedTemplate={selectedTemplate}
               selectedFont={selectedFont}
